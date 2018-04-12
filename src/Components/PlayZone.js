@@ -6,7 +6,7 @@ import { score } from '../sketch';
 class PlayZone extends Component {
   render() {
     return (
-      <div>
+      <div id='zone'>
         <BoardCreate />
         <h1> Score: {score} </h1>
       </div>

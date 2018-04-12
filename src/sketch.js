@@ -12,12 +12,12 @@ var xFruit = 0;
 var yFruit = 0;
 export let score = 0;
 
-
+let button = document.getElementById('reset');
 export default function sketch (p) {
   p.setup = () => {
     p.createCanvas(600, 600);
     p.frameRate(15);
-    p.stroke(255);
+    p.stroke(146, 266, 100);
     p.strokeWeight(10);
     updateFruitCoordinates();
 
@@ -25,6 +25,7 @@ export default function sketch (p) {
         xCor.push(xStart + (i * diff));
         yCor.push(yStart);
     }
+    button.addEventListener('click', resetSketch);
   }
   p.draw = () => {
     p.background(51);
@@ -34,6 +35,21 @@ export default function sketch (p) {
     updateSnakeCoordinates();
     checkGameStatus();
     checkForFruit();
+  }
+
+  const resetSketch = () => {
+    numSegments = 10;
+    direction = 'right';
+    xStart = 0;
+    yStart = 250;
+    xCor = [];
+    yCor = [];
+    score = 0;
+    for (var i = 0; i < numSegments; i++) {
+      xCor.push(xStart + (i * diff));
+      yCor.push(yStart);
+    }
+    p.loop();
   }
 
   const updateSnakeCoordinates = () => {
